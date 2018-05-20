@@ -7,11 +7,13 @@ public abstract class Character : MonoBehaviour {
 	[SerializeField]
     private float speed;
 
+	private Animator animator;
+
 	protected Vector2 direction;
 
 	// Use this for initialization
-	void Start () {
-		
+	protected virtual void Start () {
+		animator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,13 @@ public abstract class Character : MonoBehaviour {
 	public void Move()
     {
 		Vector2 results = direction * speed * Time.deltaTime;
-		Debug.Log(results);
 		transform.Translate(results);
+		AnimateMovement(direction);
     }
+
+	public void AnimateMovement(Vector2 direction)
+	{
+		Debug.Log(direction.x);
+		animator.SetFloat("x", direction.x);
+	}
 }
