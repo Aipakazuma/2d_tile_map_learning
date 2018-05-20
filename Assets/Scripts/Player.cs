@@ -2,30 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : Character
 {
-
-	[SerializeField]
-	private float speed;
-
-	private Vector2 direction;
-
 	// Use this for initialization
 	void Start()
 	{
 	}
 
 	// Update is called once per frame
-	void Update()
+	protected override void Update()
 	{
 		GetInput();
-		Move();
-	}
-
-	public void Move()
-	{
-		Debug.Log(direction);
-		transform.Translate(direction * Vector2.right * speed * Time.deltaTime);
+		base.Update();
 	}
 
 	private void GetInput()
